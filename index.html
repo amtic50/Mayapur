@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mayapur Trip 2026</title>
+    <title>Mayapur: A Documentary Journey</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            background-color: #111;
+            background-color: #000;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             overflow: hidden;
+            color: #fff;
         }
         
+        /* The Reel Container */
         .story-container {
             height: 100dvh;
             overflow-y: scroll;
@@ -25,6 +27,7 @@
             display: none;
         }
 
+        /* Individual Story Cards */
         .card {
             height: 100dvh;
             width: 100vw;
@@ -33,30 +36,59 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 25px;
             box-sizing: border-box;
-            color: white;
             position: relative;
             text-align: center;
         }
 
-        .bg-1 { background: linear-gradient(135deg, #ff7e5f, #feb47b); }
-        .bg-2 { background: linear-gradient(135deg, #2b5876, #4e4376); }
-        .bg-3 { background: linear-gradient(135deg, #11998e, #38ef7d); }
-        .bg-4 { background: linear-gradient(135deg, #8A2387, #E94057, #F27121); }
-        .bg-5 { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); }
+        /* Cinematic Gradients */
+        .bg-intro { background: linear-gradient(to bottom, #141E30, #243B55); }
+        .bg-transit { background: linear-gradient(to bottom, #2C3E50, #000000); }
+        .bg-nabadwip { background: linear-gradient(to bottom, #3E5151, #DECBA4); }
+        .bg-hulor { background: linear-gradient(to bottom, #00467F, #A5CC82); }
+        .bg-ishodyan { background: linear-gradient(to bottom, #4b6cb7, #182848); }
+        .bg-tovp { background: linear-gradient(to bottom, #B79891, #94716B); }
+        .bg-samadhi { background: linear-gradient(to bottom, #304352, #d7d2cc); }
+        .bg-jalangi { background: linear-gradient(to bottom, #11998e, #38ef7d); }
 
-        h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        h2 { font-size: 1.8em; margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.5); padding-bottom: 5px;}
-        p { font-size: 1.2em; line-height: 1.6; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
-        .highlight { background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; margin-top: 15px; width: 100%; max-width: 350px;}
+        h1 { font-size: 2.2em; margin-bottom: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
+        h2 { font-size: 1.5em; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;}
         
+        /* Documentary Text Box */
+        .doc-text {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 400px;
+            text-align: justify;
+            font-size: 1.05em;
+            line-height: 1.6;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logistics {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 3px solid gold;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            text-align: left;
+        }
+
+        /* Swipe Indicator */
         .swipe-up {
             position: absolute;
-            bottom: 30px;
-            font-size: 1em;
-            opacity: 0.7;
+            bottom: 25px;
+            font-size: 0.9em;
+            opacity: 0.6;
             animation: bounce 2s infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
         @keyframes bounce {
@@ -70,73 +102,86 @@
 
     <div class="story-container">
         
-        <!-- Card 1: Intro -->
-        <div class="card bg-1">
-            <h1>Mayapur Calling 🪷</h1>
-            <p>Family Pilgrimage 2026<br>6 Members | 3 Relaxing Days</p>
-            <div class="swipe-up">Swipe Up ⬆️</div>
+        <!-- Intro -->
+        <div class="card bg-intro">
+            <h1>The Mayapur Diaries</h1>
+            <h2>A Family Pilgrimage</h2>
+            <div class="doc-text">
+                <p>A three-day spiritual immersion into the heart of Bengal. Six family members, two generations, and a journey from the bustling streets of Goalpara to the ancient, sacred riverbanks of the Ganges.</p>
+            </div>
+            <div class="swipe-up">Swipe to Begin ⬆️</div>
         </div>
 
-        <!-- Card 2: Transit -->
-        <div class="card bg-2">
-            <h2>The Journey 🚂</h2>
-            <div class="highlight">
-                <p><strong>Saraighat Exp (12346)</strong><br>
-                Dep: 14:40 GLPT<br>
-                Arr: 17:30 NCB</p>
-            </div>
-            <div class="highlight">
-                <p><strong>Vande Bharat SL (27576)</strong><br>
-                Dep: 21:45 NCB<br>
-                Arr: 06:13 Nabadwip</p>
-            </div>
-            <div class="swipe-up">Swipe Up ⬆️</div>
-        </div>
-
-        <!-- Card 3: Hotel -->
-        <div class="card bg-3">
-            <h2>Accommodation 🏨</h2>
-            <div class="highlight">
-                <p><strong>Ishodyan Bhavan</strong><br>
-                Booked: Mr. Dinanath Choudhury<br>
-                Ref ID: 33544<br>
-                Dates: Sept 22 - Sept 24<br>
-                Room: Standard Attached - EP X 6<br>
-                Status: Fully Paid (₹3,360)</p>
+        <!-- Transit -->
+        <div class="card bg-transit">
+            <h2>The Great Iron Road</h2>
+            <div class="doc-text">
+                <p>The transition from the material world begins on the rails. As the afternoon fades, the Saraighat Express carries the family out of Assam, making way for a high-speed, overnight dash across Bengal aboard the Vande Bharat.</p>
+                <div class="logistics">
+                    <strong>1. Saraighat Exp (12346):</strong> Dep 14:40 GLPT ➔ Arr 17:30 NCB<br>
+                    <strong>2. Vande Bharat (27576):</strong> Dep 21:45 NCB ➔ Arr 06:13 Nabadwip
+                </div>
             </div>
             <div class="swipe-up">Swipe Up ⬆️</div>
         </div>
 
-        <!-- Card 4: Day 1 -->
-        <div class="card bg-4">
-            <h2>Arrival & Darshan 🙏</h2>
-            <div class="highlight">
-                <p><strong>Sept 22 Morning:</strong><br>
-                Cross Ganges via Ferry<br>
-                Check-in & Rest<br>
-                <strong>Afternoon:</strong><br>
-                TOVP Temple Darshan<br>
-                Rajbhog Prasadam<br>
-                <strong>Evening:</strong><br>
-                Sandhya Aarti</p>
+        <!-- Nabadwip Dham -->
+        <div class="card bg-nabadwip">
+            <h2>Nabadwip Dham</h2>
+            <div class="doc-text">
+                <p>Arriving at 06:13 AM, you step onto the soil of Nabadwip—the "City of Nine Islands." Founded by the Sena dynasty in the 11th century, this ancient center of learning was the Oxford of Bengal. It is the birthplace of Chaitanya Mahaprabhu (born 1486), the great saint who sparked the Bhakti movement that would eventually sweep across the globe.</p>
             </div>
             <div class="swipe-up">Swipe Up ⬆️</div>
         </div>
 
-        <!-- Card 5: Day 2 & 3 -->
-        <div class="card bg-5">
-            <h2>Immersion & Return 🌿</h2>
-            <div class="highlight">
-                <p><strong>Sept 23:</strong><br>
-                Morning Walk by Jalangi River<br>
-                Visit ISKCON Goshala<br>
-                Campus Shopping & Relaxation<br><br>
-                <strong>Sept 24:</strong><br>
-                Check-out at 10:00 AM<br>
-                Ferry back to Nabadwip Dham<br>
-                Train Home to Goalpara</p>
+        <!-- Hulor Ghat -->
+        <div class="card bg-hulor">
+            <h2>Hulor Ghat: The Crossing</h2>
+            <div class="doc-text">
+                <p>To reach Mayapur, one must cross the mighty Ganges (Bhagirathi) River. The wooden ferry ride from Nabadwip to Hulor Ghat is not just a transit point; it is a symbolic crossing. The cool morning breeze and the sound of the boat's motor mark the final shedding of city stress before entering the sanctuary of the ISKCON campus.</p>
             </div>
-            <div class="swipe-up">Swipe Up to Top ⬆️</div>
+            <div class="swipe-up">Swipe Up ⬆️</div>
+        </div>
+
+        <!-- Ishodyan Bhavan -->
+        <div class="card bg-ishodyan">
+            <h2>Ishodyan Bhavan</h2>
+            <div class="doc-text">
+                <p>Your sanctuary for the next two days. Named after the spiritual gardens of the Vedic texts, this guesthouse provides a quiet retreat for the elders. It sits within walking distance of the main shrines, offering a grounding space amidst the immense energy of the surrounding temples.</p>
+                <div class="logistics">
+                    <strong>Ref ID:</strong> 33544<br>
+                    <strong>Room:</strong> Standard Attached - EP X 6<br>
+                    <strong>Status:</strong> Fully Paid (₹3,360)
+                </div>
+            </div>
+            <div class="swipe-up">Swipe Up ⬆️</div>
+        </div>
+
+        <!-- TOVP -->
+        <div class="card bg-tovp">
+            <h2>A Modern Marvel: TOVP</h2>
+            <div class="doc-text">
+                <p>The Temple of the Vedic Planetarium (TOVP) towers over the Bengal skyline. Decades in the making, its massive domes combine traditional Vedic architecture with modern engineering. Inside, it houses a gigantic, functioning cosmological chandelier, designed to map the universe exactly as it is described in the ancient Srimad Bhagavatam.</p>
+            </div>
+            <div class="swipe-up">Swipe Up ⬆️</div>
+        </div>
+
+        <!-- Chandrodaya & Samadhi -->
+        <div class="card bg-samadhi">
+            <h2>The Spiritual Heart</h2>
+            <div class="doc-text">
+                <p>As evening falls, the massive Sri Mayapur Chandrodaya Mandir comes alive. The Sandhya Aarti (evening worship) creates an atmosphere of pure, electric devotion. Nearby, set amidst immaculate gardens, stands the Pushpa Samadhi of Srila Prabhupada—a breathtaking marble mausoleum honoring the man who brought these teachings to the Western world at the age of 69.</p>
+            </div>
+            <div class="swipe-up">Swipe Up ⬆️</div>
+        </div>
+
+        <!-- Goshala & Jalangi -->
+        <div class="card bg-jalangi">
+            <h2>The Goshala & Jalangi River</h2>
+            <div class="doc-text">
+                <p>Beyond the marble temples lies the quiet soul of Mayapur. The pristine ISKCON Goshala is a sprawling sanctuary dedicated to cow protection, offering a serene, pastoral escape. Just a short walk away flow the waters of the Jalangi River, offering the perfect, peaceful morning walk before the journey home.</p>
+            </div>
+            <div class="swipe-up">End of Journey ⬆️</div>
         </div>
 
     </div>
