@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Trip: Mayapur & Tarapith</title>
+    <style>
+        :root {
+            --primary: #d35400;
+            --bg: #fdfae6;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 10px;
+        }
+        header {
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h1, h2 { margin: 0; padding: 5px 0; }
+        .card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .ticket-info { font-size: 0.9em; background: #eee; padding: 10px; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; }
+        th { background-color: var(--primary); color: white; }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover { background-color: #e67e22; }
+        .total-row { font-weight: bold; font-size: 1.1em; background: #ffeaa7; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Family Trip 2026</h1>
+        <p>Goalpara ➔ Mayapur ➔ Tarapith</p>
+    </header>
+
+    <div class="card">
+        <h2>🎟️ Tickets & Booking</h2>
+        <div class="ticket-info">
+            <strong>Train 1:</strong> Saraighat Exp (12346) | GLPT to NCB | Dep: 14:40, Arr: 17:30 <br>
+            <strong>Train 2:</strong> Vande Bharat (27576) | NCB to NDAE | Dep: 21:45, Arr: 06:13 <br>
+            <strong>Hotel:</strong> Ishodyan Bhavan | Ref ID: 33544 | 6-Person Room | Paid: ₹3,360
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📅 Quick Itinerary</h2>
+        <ul>
+            <li><strong>Sept 21:</strong> Depart Goalpara at 14:40. Board Vande Bharat at 21:45.</li>
+            <li><strong>Sept 22:</strong> Arrive Nabadwip 06:13. Ferry to Mayapur. Check-in Ishodyan Bhavan. Visit TOVP & attend Sandhya Aarti.</li>
+            <li><strong>Sept 23:</strong> Check-out. Bus from Krishnanagar to Berhampore to Tarapith. Evening Maha Smashan Darshan.</li>
+            <li><strong>Sept 24:</strong> VIP Darshan of Maa Tara. Train from Rampurhat (RPH) to Goalpara.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>💰 Group Expense Tracker</h2>
+        <form id="expenseForm">
+            <input type="text" id="desc" placeholder="Expense Description (e.g., Ferry Tickets)" required>
+            <select id="category">
+                <option value="Transport">Transport (Toto, Bus, Ferry)</option>
+                <option value="Food">Food & Prasadam</option>
+                <option value="Temple">Temple (Donations, Panda)</option>
+                <option value="Misc">Miscellaneous</option>
+            </select>
+            <input type="number" id="amount" placeholder="Amount (₹)" required>
+            <button type="submit">Add Expense</button>
+        </form>
+
+        <table id="expenseTable">
+            <thead>
+                <tr>
+                    <th>Desc</th>
+                    <th>Cat</th>
+                    <th>Amt (₹)</th>
+                    <th>Del</th>
+                </tr>
+            </thead>
+            <tbody id="expenseList"></tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="2">Total Expense:</td>
+                    <td colspan="2">₹<span id="totalAmount">0</span></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script>
+        // Expense Tracker Logic using LocalStorage
+        let expenses = JSON.parse(localStorage.getItem('tripExpenses')) || [];
+
+        function renderExpenses() {
+            const list = document.getElementById('expenseList');
+            let total = 0;
+            list.innerHTML = '';
+            
+            expenses.forEach((exp, index) => {
+                total += exp.amount;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${exp.desc}</td>
+                    <td>${exp.category}</td>
+                    <td>${exp.amount}</td>
+                    <td><button style="padding:5px; background:red;" onclick="deleteExp(${index})">X</button></td>
+                `;
+                list.appendChild(row);
+            });
+            document.getElementById('totalAmount').innerText = total;
+            localStorage.setItem('tripExpenses', JSON.stringify(expenses));
+        }
+
+        document.getElementById('expenseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const desc = document.getElementById('desc').value;
+            const category = document.getElementById('category').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            
+            if (desc && amount) {
+                expenses.push({ desc, category, amount });
+                renderExpenses();
+                this.reset();
+            }
+        });
+
+        function deleteExp(index) {
+            expenses.splice(index, 1);
+            renderExpenses();
+        }
+
+        // Initial Load
+        renderExpenses();
+    </script>
+</body>
+</html>
