@@ -38,3 +38,258 @@ html,body{margin:0;height:100%;background:#0e0a24;color:#fff;font-family:var(--b
 .s10{background:linear-gradient(180deg,#0e0a24,#2a1c55 70%,#5a2f6b)}
 .chip{align-self:flex-start;display:inline-block;font-size:.95rem;color:var(--gold);border:1px solid rgba(246,198,91,.55);border-radius:999px;padding:3px 14px;margin-bottom:14px}
 .inner>.chip{display:table}
+h1,h2{font-family:var(--display);font-weight:400;margin:0}
+h1{font-size:clamp(2.2rem,10vw,3.1rem);line-height:1.3}
+h2{font-size:clamp(1.7rem,7.5vw,2.2rem);line-height:1.35;margin-bottom:16px;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.big{font-family:var(--display);font-size:clamp(3.4rem,18vw,5.2rem);line-height:1.25;color:var(--gold);margin:0 0 6px;text-shadow:0 3px 18px rgba(0,0,0,.4)}
+.sub{font-size:1.15rem;line-height:1.6;margin:12px 0 0;opacity:.94}
+.panel{background:var(--panel);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:20px 20px 18px;line-height:1.8;font-size:1.08rem}
+.panel p{margin:0}.panel p+p{margin-top:12px}
+.note{margin-top:14px;padding:10px 12px;border-left:3px solid var(--gold);background:rgba(246,198,91,.1);font-size:1rem;line-height:1.7;border-radius:0 8px 8px 0}
+.note b{color:var(--gold);font-weight:600}
+.love{margin:16px 4px 0;font-family:var(--display);font-size:1.12rem;line-height:1.7;color:var(--rose);text-shadow:0 1px 8px rgba(0,0,0,.55)}
+.love::before{content:"♥ ";font-size:.9em}
+.rail{list-style:none;margin:0;padding:0 0 0 22px;border-left:2px solid rgba(246,198,91,.6)}
+.rail li{position:relative;padding:0 0 16px 12px;line-height:1.65}
+.rail li:last-child{padding-bottom:0}
+.rail li::before{content:"";position:absolute;left:-31px;top:.6em;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(246,198,91,.25)}
+.rail b{display:block;color:var(--gold);font-weight:600}
+.checks{list-style:none;margin:0;padding:0}
+.checks label{display:flex;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);cursor:pointer;line-height:1.5}
+.checks li:last-child label{border-bottom:0}
+.checks input{width:20px;height:20px;accent-color:var(--gold);flex:none}
+.checks input:checked+span{opacity:.5;text-decoration:line-through}
+.hint{position:absolute;left:0;right:0;bottom:22px;text-align:center;font-size:.95rem;opacity:.8;z-index:1}
+.hint span{display:inline-block;animation:nudge 2.2s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 30% 8%,#fff,transparent),radial-gradient(1.5px 1.5px at 55% 14%,#fff,transparent),radial-gradient(1px 1px at 78% 9%,#fff,transparent),radial-gradient(1.5px 1.5px at 90% 24%,#fff,transparent),radial-gradient(1px 1px at 20% 30%,#fff,transparent)}
+.days{font-family:var(--display);font-size:1.25rem;line-height:1.6;margin-top:20px;text-align:center}
+.days b{font-size:2.4rem;color:var(--gold);font-weight:400}
+.acts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.acts button,.acts a{font:inherit;font-size:1rem;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 18px;cursor:pointer;text-decoration:none}
+.acts button:active{transform:scale(.96)}
+.sign{margin-top:22px;text-align:center;font-size:.85rem;opacity:.6}
+.fl{position:fixed;bottom:18%;z-index:20;pointer-events:none;color:var(--rose);animation:up 2.4s ease-out forwards}
+@keyframes up{to{transform:translateY(-55vh) scale(1.6);opacity:0}}
+.dots{position:fixed;right:10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:2px;z-index:5}
+.dots button{width:22px;height:22px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.dots button::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5);transition:transform .25s,background .25s}
+.dots button.on::before{background:var(--gold);transform:scale(1.7)}
+button:focus-visible,a:focus-visible,.reel:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(min-width:700px){.inner{max-width:30rem}}
+@media(prefers-reduced-motion:reduce){.reel{scroll-behavior:auto}.hint span,.fl{animation:none}}
+</style>
+</head>
+<body>
+<div class="bar" aria-hidden="true"></div>
+<nav class="dots" aria-label="अध्याय"></nav>
+<main class="reel" tabindex="0">
+
+<section class="card s0" aria-label="शुरुआत">
+  <div class="stars"></div>
+  <div class="inner">
+    <p class="big">मायापुर</p>
+    <h1>मायापुर की डायरी</h1>
+    <p class="sub">ग्वालपाड़ा से गंगा किनारे तक, एक पारिवारिक तीर्थयात्रा।</p>
+    <div class="panel" style="margin-top:22px"><p>छह लोग, तीन दिन, दो पीढ़ियाँ और पार करने को एक नदी। ऊपर स्वाइप करो और पहली ट्रेन से आख़िरी सुबह की सैर तक पूरा सफ़र देखो।</p></div>
+    <p class="love">यह सफ़र और यह पन्ना, तुम्हारे नाम।</p>
+  </div>
+  <div class="hint"><span>ऊपर स्वाइप करें</span></div>
+</section>
+
+<section class="card s1" aria-label="योजना">
+  <div class="inner">
+    <span class="chip">योजना</span>
+    <h2>तीन दिन, एक नज़र में</h2>
+    <div class="panel"><ul class="rail">
+      <li><b>दिन 1: पटरियों पर</b>14:40 पर ग्वालपाड़ा से रवाना। रात की यात्रा के लिए न्यू कूचबिहार में ट्रेन बदलनी है।</li>
+      <li><b>दिन 2: मायापुर</b>सुबह 06:13 पर पहुँचना, नदी पार करना, चेक-इन, फिर TOVP, संध्या आरती और समाधि।</li>
+      <li><b>दिन 3: धीमी सुबह</b>गौशाला, जलांगी के किनारे सैर और फिर घर वापसी।</li>
+    </ul></div>
+    <p class="love">तीन दिन, और हर पल तुम्हारे साथ।</p>
+  </div>
+</section>
+
+<section class="card s2" aria-label="ट्रेन यात्रा">
+  <div class="inner">
+    <span class="chip">दिन 1 · दोपहर से रात</span>
+    <h2>लोहे की लंबी सड़क</h2>
+    <div class="panel">
+      <p>यात्रा पटरियों से शुरू होती है। दोपहर की धूप ढलते-ढलते सरायघाट एक्सप्रेस परिवार को असम से बाहर ले जाती है। न्यू कूचबिहार में थोड़ा रुककर वंदे भारत रात भर बंगाल पार कराती है।</p>
+      <ul class="rail" style="margin-top:18px">
+        <li><b>सरायघाट एक्सप्रेस (12346)</b>ग्वालपाड़ा टाउन 14:40 से न्यू कूचबिहार 17:30</li>
+        <li><b>वंदे भारत (27576)</b>न्यू कूचबिहार 21:45 से नवद्वीप 06:13</li>
+      </ul>
+      <div class="note"><b>बीच का इंतज़ार:</b> न्यू कूचबिहार में क़रीब चार घंटे। खाना खा लें और बड़ों को आराम करने दें।</div>
+    </div>
+    <p class="love">खिड़की वाली सीट तुम्हारी, और बाहर की हर शाम भी।</p>
+  </div>
+</section>
+
+<section class="card s3" aria-label="नवद्वीप">
+  <div class="inner">
+    <span class="chip">दिन 2 · 06:13</span>
+    <h2>नवद्वीप धाम</h2>
+    <div class="panel">
+      <p>आसमान गुलाबी होते ही ट्रेन रुकती है। "नौ द्वीपों का नगर" नवद्वीप 11वीं सदी में सेन वंश ने बसाया था। यह विद्या का बड़ा केंद्र बना और इसे बंगाल का ऑक्सफ़ोर्ड कहा जाता है।</p>
+      <p>यह चैतन्य महाप्रभु (जन्म 1486) की भूमि है, जिनका भक्ति आंदोलन बंगाल से निकलकर पूरी दुनिया में फैला।</p>
+    </div>
+    <p class="love">सुबह की पहली रोशनी में तुम्हारे साथ नई जगह देखना, मुझे सबसे प्यारा लगता है।</p>
+  </div>
+</section>
+
+<section class="card s4" aria-label="हुलोर घाट">
+  <div class="inner">
+    <span class="chip">दिन 2 · सुबह</span>
+    <h2>हुलोर घाट: नदी पार</h2>
+    <div class="panel">
+      <p>मायापुर गंगा (भागीरथी) के उस पार है, इसलिए आख़िरी पड़ाव लकड़ी की नाव से पूरा होता है। ठंडी हवा, इंजन की आवाज़ और चौड़ा पानी, यहीं शहर की थकान पीछे छूट जाती है।</p>
+      <div class="note"><b>सुझाव:</b> सामान हल्का रखें, नाव पर चढ़ते समय साथ रहें और बड़ों को सहारा दें।</div>
+    </div>
+    <p class="love" style="text-shadow:0 1px 8px rgba(0,0,0,.8)">किनारा कोई भी हो, मेरा ठिकाना तुम हो।</p>
+  </div>
+</section>
+
+<section class="card s5" aria-label="ठहरने की जगह">
+  <div class="inner">
+    <span class="chip">दिन 2 · चेक-इन</span>
+    <h2>ईशोद्यान भवन</h2>
+    <div class="panel">
+      <p>अगले दो दिन हमारा ठिकाना। मुख्य मंदिरों से पैदल दूरी पर एक शांत गेस्टहाउस, जहाँ दर्शन के बीच आराम की जगह है।</p>
+      <ul class="rail" style="margin-top:18px">
+        <li><b>बुकिंग संदर्भ</b>33544</li>
+        <li><b>कमरा</b>स्टैंडर्ड अटैच्ड, 6 लोगों के लिए</li>
+        <li><b>भुगतान</b>पूरा हो चुका, ₹3,360</li>
+      </ul>
+    </div>
+    <p class="love">तुम साथ हो तो हर कमरा घर लगता है।</p>
+  </div>
+</section>
+
+<section class="card s6" aria-label="टीओवीपी">
+  <div class="inner">
+    <span class="chip">दिन 2 · दिन में</span>
+    <h2>आधुनिक चमत्कार: TOVP</h2>
+    <div class="panel">
+      <p>वैदिक तारामंडल मंदिर बंगाल के क्षितिज पर ऊँचा खड़ा है। दशकों में बना, इसके विशाल गुंबद पारंपरिक वैदिक वास्तुकला को आधुनिक इंजीनियरिंग से जोड़ते हैं।</p>
+      <p>अंदर एक विशाल ब्रह्मांडीय झूमर है, जो श्रीमद्भागवत के वर्णन के अनुसार ब्रह्मांड को दिखाने के लिए बनाया गया है।</p>
+      <div class="note"><b>ध्यान रखें:</b> शालीन कपड़े पहनें, जूते उतारने होंगे, और फ़ोटो के नियम वहाँ पहुँचकर पूछ लें।</div>
+    </div>
+    <p class="love" style="text-shadow:0 1px 8px rgba(0,0,0,.8)">ऊपर गुंबद देखते हुए भी मैं शायद तुम्हें ही देखता रह जाऊँ।</p>
+  </div>
+</section>
+
+<section class="card s7" aria-label="संध्या आरती">
+  <div class="inner">
+    <span class="chip">दिन 2 · शाम</span>
+    <h2>आध्यात्मिक हृदय</h2>
+    <div class="panel">
+      <p>शाम ढलते ही श्री मायापुर चंद्रोदय मंदिर जीवंत हो उठता है। संध्या आरती में ढोल, शंख और कीर्तन गूँजते हैं। जगह पाने के लिए जल्दी पहुँचना अच्छा रहता है।</p>
+      <p>पास ही शांत बगीचों के बीच श्रील प्रभुपाद की संगमरमर की पुष्प समाधि है, जिन्होंने 69 वर्ष की उम्र में ये शिक्षाएँ पश्चिम तक पहुँचाईं।</p>
+      <div class="note"><b>सुझाव:</b> आरती का समय मौसम के साथ बदलता है। सुबह गेस्टहाउस डेस्क पर पूछ लें।</div>
+    </div>
+    <p class="love">दीयों की लौ में तुम्हारा चेहरा, यही मेरी सबसे प्यारी आरती है।</p>
+  </div>
+</section>
+
+<section class="card s8" aria-label="गौशाला और जलांगी">
+  <div class="inner">
+    <span class="chip">दिन 3 · सुबह</span>
+    <h2>गौशाला और जलांगी</h2>
+    <div class="panel">
+      <p>संगमरमर के मंदिरों के पार मायापुर का सौम्य रूप है। इस्कॉन गौशाला गौ-सेवा को समर्पित एक हरा-भरा विशाल आश्रय है, और थोड़ी ही दूर जलांगी नदी बहती है।</p>
+      <p>घर लौटने से पहले यहाँ की धीमी आख़िरी सुबह इस यात्रा का सबसे सुंदर समापन होगी।</p>
+    </div>
+    <p class="love" style="color:#8a2f52;text-shadow:none">तुम्हारे साथ चलती हर सुबह मेरे लिए तीर्थ जैसी है।</p>
+  </div>
+</section>
+
+<section class="card s9" aria-label="साथ रखने की चीज़ें">
+  <div class="inner">
+    <span class="chip">निकलने से पहले</span>
+    <h2>साथ रखने की छोटी बातें</h2>
+    <div class="panel"><ul class="checks">
+      <li><label><input type="checkbox"><span>सबके टिकट और फ़ोटो पहचान पत्र</span></label></li>
+      <li><label><input type="checkbox"><span>गेस्टहाउस की बुकिंग (संदर्भ 33544)</span></label></li>
+      <li><label><input type="checkbox"><span>हल्के सूती कपड़े और सुबह के लिए शॉल</span></label></li>
+      <li><label><input type="checkbox"><span>आसानी से उतरने वाले जूते</span></label></li>
+      <li><label><input type="checkbox"><span>पानी की बोतल, नाश्ता और खुले पैसे</span></label></li>
+      <li><label><input type="checkbox"><span>छाता और मच्छर भगाने की क्रीम</span></label></li>
+      <li><label><input type="checkbox"><span>बड़ों की दवाइयाँ और पावर बैंक</span></label></li>
+    </ul></div>
+  </div>
+</section>
+
+<section class="card s10" aria-label="समापन">
+  <div class="stars"></div>
+  <div class="inner" style="text-align:center">
+    <p class="big" style="font-size:clamp(2.8rem,14vw,4.2rem)">हरे कृष्ण</p>
+    <h2>मेरे साथ चलने के लिए धन्यवाद</h2>
+    <div class="panel" style="text-align:left"><p>कुछ यात्राएँ जगहों की होती हैं और कुछ उनकी, जो साथ चलते हैं। मुझे ख़ुशी है कि यह यात्रा तुम्हारे साथ है।</p></div>
+    <p class="days">16 फ़रवरी 2025 से अब तक<br><b id="days">·</b> दिन, साथ-साथ</p>
+    <div class="acts">
+      <button id="heart" type="button" aria-label="दिल भेजें">♥ दिल दबाओ</button>
+      <button id="share" type="button" hidden>साझा करें</button>
+      <a href="#" id="top">फिर से शुरू से</a>
+    </div>
+    <p class="sign">तुम्हारे लिए, प्यार से बनाया गया</p>
+  </div>
+</section>
+
+</main>
+<script>
+(function(){
+  var reel=document.querySelector('.reel'),cards=[].slice.call(document.querySelectorAll('.card')),
+      nav=document.querySelector('.dots'),bar=document.querySelector('.bar');
+  var dots=cards.map(function(c,i){
+    var b=document.createElement('button');
+    b.setAttribute('aria-label',c.getAttribute('aria-label')||('अध्याय '+(i+1)));
+    b.onclick=function(){c.scrollIntoView({behavior:'smooth'})};
+    nav.appendChild(b);return b;
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting)dots.forEach(function(d,i){d.classList.toggle('on',cards[i]===e.target)});
+  })},{root:reel,threshold:.55});
+  cards.forEach(function(c){io.observe(c)});
+  reel.addEventListener('scroll',function(){
+    var m=reel.scrollHeight-reel.clientHeight;bar.style.width=(m>0?reel.scrollTop/m*100:0)+'%';
+  },{passive:true});
+  document.getElementById('top').onclick=function(e){e.preventDefault();cards[0].scrollIntoView({behavior:'smooth'})};
+
+  // शादी के बाद कितने दिन
+  var d=Math.floor((Date.now()-new Date(2025,1,16))/864e5);
+  document.getElementById('days').textContent=d>0?d:'·';
+
+  // दिल भेजने वाला बटन
+  var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.getElementById('heart').onclick=function(){
+    if(still)return;
+    for(var i=0;i<9;i++){(function(i){setTimeout(function(){
+      var h=document.createElement('span');h.className='fl';h.textContent='♥';
+      h.style.left=(15+Math.random()*70)+'vw';h.style.fontSize=(16+Math.random()*26)+'px';
+      document.body.appendChild(h);setTimeout(function(){h.remove()},2500);
+    },i*110)})(i)}
+  };
+
+  // साझा करने का बटन (फ़ोन पर)
+  var sh=document.getElementById('share');
+  if(navigator.share){sh.hidden=false;sh.onclick=function(){
+    navigator.share({title:document.title,text:'मायापुर की डायरी',url:location.href}).catch(function(){});
+  }}
+
+  // पैकिंग सूची इसी फ़ोन में याद रहती है
+  var boxes=[].slice.call(document.querySelectorAll('.checks input')),saved=[];
+  try{saved=JSON.parse(localStorage.getItem('mayapur-pack')||'[]')}catch(e){}
+  boxes.forEach(function(b,i){
+    b.checked=saved.indexOf(i)>-1;
+    b.onchange=function(){
+      var on=boxes.map(function(x,j){return x.checked?j:-1}).filter(function(j){return j>-1});
+      try{localStorage.setItem('mayapur-pack',JSON.stringify(on))}catch(e){}
+    };
+  });
+
+  if(window.console)console.log('%c♥ तुम्हारे लिए, हाथ से बनाया गया','color:#f7b6c6;font-size:14px');
+})();
+</script>
+</body>
+</html>
